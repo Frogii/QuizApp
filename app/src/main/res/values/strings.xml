@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">QuizApp</string>
+    <string name="categories_fragment_title">Categories</string>
+    <string name="history_fragment_title">History</string>
 </resources>
