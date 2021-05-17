@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">QuizApp</string>
+    <string name="categories_fragment_title">Categories</string>
+    <string name="history_fragment_title">History</string>
+    <string name="answer_yes">Yes</string>
+    <string name="answer_no">No</string>
+    <string name="clear_history">Clear history</string>
 </resources>
