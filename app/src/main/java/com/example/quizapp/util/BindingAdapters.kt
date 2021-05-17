@@ -18,7 +18,7 @@ fun bindRecyclerViewData(recyclerView: RecyclerView, data: List<QuizCategory>?) 
 }
 
 @BindingAdapter("apiStatus")
-fun bindApiStatus(imageView: ImageView, status: ApiStatus) {
+fun bindApiStatus(imageView: ImageView, status: ApiStatus?) {
     when (status) {
         ApiStatus.LOADING -> {
             imageView.visibility = View.VISIBLE

@@ -23,14 +23,16 @@ class CategoriesViewModel(private val quizRepository: QuizRepository) : ViewMode
     }
 
     private fun getCategories() {
-        viewModelScope.launch {
-            _status.value = ApiStatus.LOADING
-            try {
-                quizRepository.getCategories()
-                _status.value = ApiStatus.DONE
-            } catch (e: Exception) {
-                _status.value = ApiStatus.ERROR
-                Log.d("myLog", e.message.toString())
+        if(categories.value.isNullOrEmpty()) {
+            viewModelScope.launch {
+                _status.value = ApiStatus.LOADING
+                try {
+                    quizRepository.getCategories()
+                    _status.value = ApiStatus.DONE
+                } catch (e: Exception) {
+                    _status.value = ApiStatus.ERROR
+                    Log.d("myLog", e.message.toString())
+                }
             }
         }
     }
