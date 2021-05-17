@@ -7,7 +7,7 @@ import com.example.quizapp.databinding.CategoryItemBinding
 import com.example.quizapp.model.QuizCategory
 import com.example.quizapp.util.Constants
 
-class CategoriesRecAdapter : RecyclerView.Adapter<CategoriesRecAdapter.CategoriesViewHolder>() {
+class CategoriesRecAdapter(val onAdapterItemClick: (QuizCategory) -> Unit) : RecyclerView.Adapter<CategoriesRecAdapter.CategoriesViewHolder>() {
 
     //    var categoriesList = listOf<QuizCategory>()
     var categoriesList = Constants.sampleCategoryList
@@ -17,11 +17,14 @@ class CategoriesRecAdapter : RecyclerView.Adapter<CategoriesRecAdapter.Categorie
         notifyDataSetChanged()
     }
 
-    class CategoriesViewHolder(val binding: CategoryItemBinding) :
+    inner class CategoriesViewHolder(val binding: CategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(category: QuizCategory) {
             binding.category = category
+            binding.root.setOnClickListener {
+                onAdapterItemClick(category)
+            }
         }
     }
 

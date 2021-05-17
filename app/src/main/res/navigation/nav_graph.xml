@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.example.quizapp.ui.CategoriesFragment"
-        android:label="CategoriesFragment" >
+        android:label="Categories" >
         <action
             android:id="@+id/action_categoriesFragment_to_questionsFragment"
             app:destination="@id/questionsFragment" />
@@ -14,17 +14,27 @@
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.quizapp.ui.HistoryFragment"
-        android:label="HistoryFragment" />
+        android:label="History" />
     <fragment
         android:id="@+id/questionsFragment"
         android:name="com.example.quizapp.ui.QuestionsFragment"
-        android:label="QuestionsFragment" >
+        android:label="Questions" >
         <action
             android:id="@+id/action_questionsFragment_to_scoreFragment"
             app:destination="@id/scoreFragment" />
+        <argument
+            android:name="category"
+            app:argType="com.example.quizapp.model.QuizCategory" />
     </fragment>
     <fragment
         android:id="@+id/scoreFragment"
         android:name="com.example.quizapp.ui.ScoreFragment"
-        android:label="ScoreFragment" />
+        android:label="Score" >
+        <action
+            android:id="@+id/action_scoreFragment_to_questionsFragment"
+            app:destination="@id/questionsFragment" />
+        <action
+            android:id="@+id/action_scoreFragment_to_categoriesFragment"
+            app:destination="@id/categoriesFragment" />
+    </fragment>
 </navigation>
