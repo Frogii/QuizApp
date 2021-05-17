@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.databinding.CategoryItemBinding
-import com.example.quizapp.model.QuizCategory
+import com.example.quizapp.retrofit.model.QuizCategory
+
 import com.example.quizapp.util.Constants
 
-class CategoriesRecAdapter(val onAdapterItemClick: (QuizCategory) -> Unit) : RecyclerView.Adapter<CategoriesRecAdapter.CategoriesViewHolder>() {
+class CategoriesRecAdapter(val onAdapterItemClick: (QuizCategory) -> Unit) :
+    RecyclerView.Adapter<CategoriesRecAdapter.CategoriesViewHolder>() {
 
-    //    var categoriesList = listOf<QuizCategory>()
-    var categoriesList = Constants.sampleCategoryList
+    var categoriesList = listOf<QuizCategory>()
 
     fun setList(list: List<QuizCategory>) {
         this.categoriesList = list

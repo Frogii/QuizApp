@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.example.quizapp.ui.CategoriesViewModel" />
     </data>
 
     <FrameLayout
@@ -20,6 +22,7 @@
             android:padding="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
+            app:dataList="@{viewModel.categories}"
             tools:listitem="@layout/category_item" />
     </FrameLayout>
 </layout>

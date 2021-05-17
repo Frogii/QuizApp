@@ -24,7 +24,7 @@
             app:destination="@id/scoreFragment" />
         <argument
             android:name="category"
-            app:argType="com.example.quizapp.model.QuizCategory" />
+            app:argType="com.example.quizapp.retrofit.model.QuizCategory" />
     </fragment>
     <fragment
         android:id="@+id/scoreFragment"
