@@ -11,9 +11,12 @@ import kotlinx.coroutines.launch
 
 class CategoriesViewModel(private val quizRepository: QuizRepository) : ViewModel() {
 
-    private val _categories = MutableLiveData<List<QuizCategory>>()
+    private val _status = MutableLiveData<ApiStatus>()
+    val status: LiveData<ApiStatus>
+        get() = _status
+
     val categories: LiveData<List<QuizCategory>>
-        get() = _categories
+        get() = quizRepository.categories
 
     init {
         getCategories()
@@ -21,15 +24,16 @@ class CategoriesViewModel(private val quizRepository: QuizRepository) : ViewMode
 
     private fun getCategories() {
         viewModelScope.launch {
+            _status.value = ApiStatus.LOADING
             try {
-                val response = quizRepository.getCategories()
-                if (response.isSuccessful) {
-                    _categories.value = response.body()?.categories
-                    Log.d("myLog", response.body().toString())
-                }
+                quizRepository.getCategories()
+                _status.value = ApiStatus.DONE
             } catch (e: Exception) {
+                _status.value = ApiStatus.ERROR
                 Log.d("myLog", e.message.toString())
             }
         }
     }
 }
+
+enum class ApiStatus { LOADING, ERROR, DONE }
