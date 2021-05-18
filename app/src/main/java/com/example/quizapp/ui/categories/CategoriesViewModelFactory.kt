@@ -1,4 +1,4 @@
-package com.example.quizapp.ui
+package com.example.quizapp.ui.categories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

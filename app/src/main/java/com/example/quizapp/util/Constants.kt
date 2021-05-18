@@ -4,6 +4,8 @@ import com.example.quizapp.model.QuizCategory
 
 object Constants {
 
+    const val BASE_URL = "https://opentdb.com"
+
     val sampleCategoryList = listOf<QuizCategory>(
         QuizCategory(1, "Animals"),
         QuizCategory(2, "Cars"),

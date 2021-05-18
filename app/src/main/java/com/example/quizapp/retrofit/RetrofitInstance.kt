@@ -1,5 +1,6 @@
 package com.example.quizapp.retrofit
 
+import com.example.quizapp.util.Constants.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,7 +16,7 @@ class RetrofitInstance {
                 .addInterceptor(loggingInterceptor)
                 .build()
             Retrofit.Builder()
-                .baseUrl("https://opentdb.com")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

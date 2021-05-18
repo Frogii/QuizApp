@@ -6,13 +6,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.quizapp.ui.CategoriesViewModel" />
+            type="com.example.quizapp.ui.categories.CategoriesViewModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.CategoriesFragment">
+        tools:context=".ui.categories.CategoriesFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewCategories"

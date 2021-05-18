@@ -1,4 +1,4 @@
-package com.example.quizapp.ui
+package com.example.quizapp.ui.categories
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.quizapp.repository.QuizRepository
 import com.example.quizapp.retrofit.model.QuizCategory
+import com.example.quizapp.util.ApiStatus
 import kotlinx.coroutines.launch
 
 class CategoriesViewModel(private val quizRepository: QuizRepository) : ViewModel() {
@@ -37,5 +38,3 @@ class CategoriesViewModel(private val quizRepository: QuizRepository) : ViewMode
         }
     }
 }
-
-enum class ApiStatus { LOADING, ERROR, DONE }

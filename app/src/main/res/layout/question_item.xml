@@ -7,7 +7,7 @@
 
         <variable
             name="question"
-            type="com.example.quizapp.model.QuizQuestion" />
+            type="com.example.quizapp.retrofit.model.QuizQuestion" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +22,7 @@
             android:layout_marginBottom="100dp"
             android:fontFamily="@font/archivo_black"
             android:textAlignment="center"
-            android:text="@{question.questionText}"
+            android:text="@{question.question}"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"

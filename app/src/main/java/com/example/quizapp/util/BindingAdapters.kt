@@ -4,16 +4,26 @@ import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.example.quizapp.R
 import com.example.quizapp.adapter.CategoriesRecAdapter
+import com.example.quizapp.adapter.QuestionsRecAdapter
 import com.example.quizapp.retrofit.model.QuizCategory
-import com.example.quizapp.ui.ApiStatus
+import com.example.quizapp.retrofit.model.QuizQuestion
 
 @BindingAdapter("dataList")
 fun bindRecyclerViewData(recyclerView: RecyclerView, data: List<QuizCategory>?) {
     val adapter = recyclerView.adapter as CategoriesRecAdapter
     data?.let { list ->
         adapter.submitList(list)
+    }
+}
+
+@BindingAdapter("questionsList")
+fun bindQuestionRecycler(viewPager2: ViewPager2, data: List<QuizQuestion>?) {
+    val adapter = viewPager2.adapter as QuestionsRecAdapter
+    data?.let {
+        adapter.setList(data)
     }
 }
 
