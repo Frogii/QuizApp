@@ -33,10 +33,13 @@ class QuestionsFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         questionsRecAdapter = QuestionsRecAdapter()
         binding.viewPagerQuestions.adapter = questionsRecAdapter
-
-        Toast.makeText(context, args.toString(), Toast.LENGTH_SHORT).show()
-        return binding.root
     }
 }

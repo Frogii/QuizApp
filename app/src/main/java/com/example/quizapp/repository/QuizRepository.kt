@@ -17,11 +17,6 @@ object QuizRepository {
     val categories: LiveData<List<QuizCategory>>
         get() = _categories
 
-    private val _questions = MutableLiveData<List<QuizQuestion>>()
-    val questions: LiveData<List<QuizQuestion>>
-        get() = _questions
-
-
     suspend fun getCategories() = withContext(Dispatchers.IO) {
         val response = api.getCategories()
         if (response.isSuccessful) {
@@ -29,10 +24,6 @@ object QuizRepository {
         }
     }
 
-    suspend fun getQuestions(categoryId: Int) = withContext(Dispatchers.IO) {
-        val response = api.getQuestions(categoryId)
-        if (response.isSuccessful) {
-            _questions.postValue(response.body()?.results)
-        }
-    }
+    suspend fun getQuestions(categoryId: Int) = api.getQuestions(categoryId)
+
 }

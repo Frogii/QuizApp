@@ -1,3 +1,3 @@
 package com.example.quizapp.util
 
-enum class ApiStatus { LOADING, ERROR, DONE }
+enum class ApiStatus { LOADING, ERROR, DONE, EMPTY }
