@@ -9,7 +9,9 @@
         android:label="Categories" >
         <action
             android:id="@+id/action_categoriesFragment_to_questionsFragment"
-            app:destination="@id/questionsFragment" />
+            app:destination="@id/questionsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"

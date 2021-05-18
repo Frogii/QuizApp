@@ -22,7 +22,7 @@
             android:layout_marginBottom="100dp"
             android:fontFamily="@font/archivo_black"
             android:textAlignment="center"
-            android:text="@{question.question}"
+            android:text="@{question.formattedQuestion}"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"

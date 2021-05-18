@@ -12,11 +12,15 @@
 
     <FrameLayout
         android:layout_width="match_parent"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_height="wrap_content">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/recyclerCategoryItem"
             android:layout_width="match_parent"
             android:layout_height="160dp"
+            android:background="?android:attr/selectableItemBackground"
             android:layout_margin="8dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="6dp">

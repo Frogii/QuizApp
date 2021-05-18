@@ -16,7 +16,7 @@ class CategoriesRecAdapter(val onAdapterItemClick: (QuizCategory) -> Unit) :
 
         fun bind(category: QuizCategory) {
             binding.category = category
-            binding.root.setOnClickListener {
+            binding.recyclerCategoryItem.setOnClickListener {
                 onAdapterItemClick(category)
             }
         }
