@@ -4,13 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.databinding.HistoryItemBinding
-import com.example.quizapp.model.QuizHistory
 
 class HistoryRecAdapter : RecyclerView.Adapter<HistoryRecAdapter.HistoryViewHolder>() {
 
-    var historyList = listOf<QuizHistory>()
+    var historyList = listOf<Any>()
 
-    fun setList(list: List<QuizHistory>) {
+    fun setList(list: List<Any>) {
         this.historyList = list
     }
 

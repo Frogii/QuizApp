@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="history"
-            type="com.example.quizapp.model.QuizHistory" />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -27,7 +25,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/archivo_black"
-            android:text="@{history.categoryName}"
             android:textColor="@color/black"
             android:textSize="26sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +36,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{String.valueOf(history.date)}"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +47,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="@{String.valueOf(history.rightAnswers)}"
             android:textColor="@color/black"
             android:textSize="26sp"
             app:layout_constraintBottom_toBottomOf="parent"

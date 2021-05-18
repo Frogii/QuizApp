@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/questionsFragment"
         android:name="com.example.quizapp.ui.questions.QuestionsFragment"
-        android:label="Questions" >
+        android:label="" >
         <action
             android:id="@+id/action_questionsFragment_to_scoreFragment"
             app:destination="@id/scoreFragment" />

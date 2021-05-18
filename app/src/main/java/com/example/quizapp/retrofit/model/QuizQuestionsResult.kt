@@ -1,6 +1,6 @@
 package com.example.quizapp.retrofit.model
 
-data class QuizQuestions(
+data class QuizQuestionsResult(
     val response_code: Int,
     val results: List<QuizQuestion>
 )

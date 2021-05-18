@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.databinding.QuestionItemBinding
 import com.example.quizapp.retrofit.model.QuizQuestion
-import com.example.quizapp.retrofit.model.QuizQuestions
 
 class QuestionsRecAdapter : RecyclerView.Adapter<QuestionsRecAdapter.QuestionViewHolder>() {
 

@@ -12,16 +12,16 @@
 
     <FrameLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:clickable="true"
-        android:focusable="true"
-        android:layout_height="wrap_content">
+        android:focusable="true">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/recyclerCategoryItem"
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:background="?android:attr/selectableItemBackground"
             android:layout_margin="8dp"
+            android:background="?android:attr/selectableItemBackground"
             app:cardCornerRadius="12dp"
             app:cardElevation="6dp">
 
@@ -33,11 +33,11 @@
                     android:id="@+id/textViewCategoryItem"
                     android:layout_width="144dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/archivo_black"
                     android:text="@{category.shortName}"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:fontFamily="@font/archivo_black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -45,8 +45,6 @@
                     tools:text="Animals" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </com.google.android.material.card.MaterialCardView>
-
     </FrameLayout>
 </layout>

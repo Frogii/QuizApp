@@ -45,8 +45,6 @@ class QuestionsViewModel(private val quizRepository: QuizRepository, category: Q
                             _status.value = ApiStatus.DONE
                         }
                     }
-                    Log.d("myLog", "id - $id")
-                    Log.d("myLog", "questions - ${questions.value.toString()}")
                 }
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
