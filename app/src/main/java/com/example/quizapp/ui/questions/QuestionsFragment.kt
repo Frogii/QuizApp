@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.quizapp.R
 import com.example.quizapp.adapter.QuestionsRecAdapter
 import com.example.quizapp.databinding.FragmentQuestionsBinding
@@ -33,17 +35,28 @@ class QuestionsFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_questions, container, false)
         questionsViewModelFactory = QuestionsViewModelFactory(QuizRepository, args.category)
-        viewModel = ViewModelProvider(this, questionsViewModelFactory).get(QuestionsViewModel::class.java)
+        viewModel =
+            ViewModelProvider(this, questionsViewModelFactory).get(QuestionsViewModel::class.java)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-
+        questionsRecAdapter = QuestionsRecAdapter { answer ->
+            viewModel.checkAnswer(answer)
+        }
+        binding.viewPagerQuestions.adapter = questionsRecAdapter
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        questionsRecAdapter = QuestionsRecAdapter()
-        binding.viewPagerQuestions.adapter = questionsRecAdapter
-        binding.viewPagerQuestions.isUserInputEnabled = false
+        binding.viewPagerQuestions.apply {
+            isUserInputEnabled = false
+            viewModel.position.observe(viewLifecycleOwner, Observer { position ->
+                this.currentItem = position
+            })
+        }
+
+        viewModel.scoreFragmentEvent.observe(viewLifecycleOwner, Observer { rightAnswers ->
+            findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToScoreFragment())
+        })
     }
 }

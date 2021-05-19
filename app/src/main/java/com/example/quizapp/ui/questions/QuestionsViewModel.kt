@@ -9,6 +9,8 @@ import com.example.quizapp.repository.QuizRepository
 import com.example.quizapp.retrofit.model.QuizCategory
 import com.example.quizapp.retrofit.model.QuizQuestion
 import com.example.quizapp.util.ApiStatus
+import com.example.quizapp.util.SingleLiveEvent
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class QuestionsViewModel(private val quizRepository: QuizRepository, category: QuizCategory) :
@@ -25,6 +27,18 @@ class QuestionsViewModel(private val quizRepository: QuizRepository, category: Q
     private val _questions = MutableLiveData<List<QuizQuestion>>()
     val questions: LiveData<List<QuizQuestion>>
         get() = _questions
+
+    private val _rightAnswers = MutableLiveData(0)
+    val rightAnswers: LiveData<Int>
+        get() = _rightAnswers
+
+    private val _position = MutableLiveData(0)
+    val position: LiveData<Int>
+        get() = _position
+
+    val answerResultEvent = SingleLiveEvent<Boolean>()
+
+    val scoreFragmentEvent = SingleLiveEvent<Int>()
 
     init {
         _category.value = category
@@ -51,5 +65,38 @@ class QuestionsViewModel(private val quizRepository: QuizRepository, category: Q
                 Log.d("myLog", e.message.toString())
             }
         }
+    }
+
+    fun checkAnswer(answer: Boolean) = viewModelScope.launch {
+        questions.value?.let { questionsList ->
+            if (answer == questionsList[position.value!!].correctAnswer) {
+                _rightAnswers.value = rightAnswers.value!!.plus(1)
+                showAnswerResult(true)
+                Log.d("myLog", "rightAnswers - ${rightAnswers.value.toString()}")
+            } else {
+                showAnswerResult(false)
+            }
+            delay(1000)
+            hideAnswerResult()
+            if (position.value!! < questionsList.size - 1) {
+                _position.value = position.value!!.plus(1)
+            } else {
+                moveToScoreFragment(rightAnswers.value!!)
+            }
+            Log.d("myLog", "position - ${position.value.toString()}")
+        }
+    }
+
+
+    private fun hideAnswerResult() {
+        answerResultEvent.value = null
+    }
+
+    private fun showAnswerResult(checkedAnswer: Boolean) {
+        answerResultEvent.value = checkedAnswer
+    }
+
+    private fun moveToScoreFragment(rightAnswers: Int) {
+        scoreFragmentEvent.value = rightAnswers
     }
 }
