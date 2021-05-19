@@ -17,4 +17,3 @@ local.gradle
 local.properties
 .idea
 *.temp
-gradle.properties

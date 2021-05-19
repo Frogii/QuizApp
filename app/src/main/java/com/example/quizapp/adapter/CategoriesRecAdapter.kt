@@ -1,28 +1,23 @@
 package com.example.quizapp.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.databinding.CategoryItemBinding
-import com.example.quizapp.model.QuizCategory
-import com.example.quizapp.util.Constants
+import com.example.quizapp.retrofit.model.QuizCategory
 
-class CategoriesRecAdapter(val onAdapterItemClick: (QuizCategory) -> Unit) : RecyclerView.Adapter<CategoriesRecAdapter.CategoriesViewHolder>() {
-
-    //    var categoriesList = listOf<QuizCategory>()
-    var categoriesList = Constants.sampleCategoryList
-
-    fun setList(list: List<QuizCategory>) {
-        this.categoriesList = list
-        notifyDataSetChanged()
-    }
+class CategoriesRecAdapter(val onAdapterItemClick: (QuizCategory) -> Unit) :
+    ListAdapter<QuizCategory, CategoriesRecAdapter.CategoriesViewHolder>(DiffCallback) {
 
     inner class CategoriesViewHolder(val binding: CategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(category: QuizCategory) {
             binding.category = category
-            binding.root.setOnClickListener {
+            binding.recyclerCategoryItem.setOnClickListener {
                 onAdapterItemClick(category)
             }
         }
@@ -33,10 +28,16 @@ class CategoriesRecAdapter(val onAdapterItemClick: (QuizCategory) -> Unit) : Rec
     }
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
-        holder.bind(categoriesList[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int {
-        return categoriesList.size
+    companion object DiffCallback: DiffUtil.ItemCallback<QuizCategory>() {
+        override fun areItemsTheSame(oldItem: QuizCategory, newItem: QuizCategory): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: QuizCategory, newItem: QuizCategory): Boolean {
+            return oldItem.id == newItem.id
+        }
     }
 }
