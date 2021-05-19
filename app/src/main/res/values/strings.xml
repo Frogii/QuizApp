@@ -5,5 +5,8 @@
     <string name="answer_yes">Yes</string>
     <string name="answer_no">No</string>
     <string name="clear_history">Clear history</string>
-    <string name="your_score">%1$d/10</string>
+    <string name="score_num">%1$d/10</string>
+    <string name="finish">Finish</string>
+    <string name="try_again">Try again</string>
+    <string name="your_score_is">Your score is</string>
 </resources>
