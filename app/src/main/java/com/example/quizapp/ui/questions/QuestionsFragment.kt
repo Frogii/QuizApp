@@ -1,6 +1,7 @@
 package com.example.quizapp.ui.questions
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,6 +55,14 @@ class QuestionsFragment : Fragment() {
                 this.currentItem = position
             })
         }
+
+        viewModel.answerResultEvent.observe(viewLifecycleOwner, Observer { answer ->
+            binding.answer = answer
+            binding.motionLayoutQuestions.transitionToEnd()
+            binding.motionLayoutQuestions.visibility = View.GONE
+            binding.motionLayoutQuestions.transitionToStart()
+            binding.motionLayoutQuestions.visibility = View.VISIBLE
+        })
 
         viewModel.scoreFragmentEvent.observe(viewLifecycleOwner, Observer { rightAnswers ->
             findNavController().navigate(

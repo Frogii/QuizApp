@@ -9,4 +9,6 @@
     <string name="finish">Finish</string>
     <string name="try_again">Try again</string>
     <string name="your_score_is">Your score is</string>
+    <string name="true_answer">True</string>
+    <string name="wrong_answer">Wrong</string>
 </resources>
