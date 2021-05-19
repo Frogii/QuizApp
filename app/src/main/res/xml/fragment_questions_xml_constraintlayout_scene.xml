@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+       <KeyFrameSet>
+           <KeyPosition
+               motion:motionTarget="@+id/textViewAnswer"
+               motion:framePosition="30"
+               motion:keyPositionType="parentRelative"
+               motion:percentY="0.2" />
+           <KeyPosition
+               motion:motionTarget="@+id/textViewAnswer"
+               motion:framePosition="70"
+               motion:keyPositionType="parentRelative"
+               motion:percentY="0.2" />
+           <KeyAttribute
+               motion:motionTarget="@+id/textViewAnswer"
+               motion:framePosition="30"
+               android:alpha="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/textViewAnswer"
+               motion:framePosition="70"
+               android:alpha="1" />
+       </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/textViewAnswer"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toTopOf="@+id/viewPagerQuestions"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:alpha="0" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/textViewAnswer"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toTopOf="@+id/viewPagerQuestions"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:alpha="0" />
+    </ConstraintSet>
+</MotionScene>

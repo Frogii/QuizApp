@@ -77,7 +77,6 @@ class QuestionsViewModel(private val quizRepository: QuizRepository, category: Q
                 showAnswerResult(false)
             }
             delay(1000)
-            hideAnswerResult()
             if (position.value!! < questionsList.size - 1) {
                 _position.value = position.value!!.plus(1)
             } else {
@@ -85,11 +84,6 @@ class QuestionsViewModel(private val quizRepository: QuizRepository, category: Q
             }
             Log.d("myLog", "position - ${position.value.toString()}")
         }
-    }
-
-
-    private fun hideAnswerResult() {
-        answerResultEvent.value = null
     }
 
     private fun showAnswerResult(checkedAnswer: Boolean) {
