@@ -44,5 +44,6 @@ class QuestionsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         questionsRecAdapter = QuestionsRecAdapter()
         binding.viewPagerQuestions.adapter = questionsRecAdapter
+        binding.viewPagerQuestions.isUserInputEnabled = false
     }
 }
