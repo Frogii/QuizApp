@@ -56,7 +56,12 @@ class QuestionsFragment : Fragment() {
         }
 
         viewModel.scoreFragmentEvent.observe(viewLifecycleOwner, Observer { rightAnswers ->
-            findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToScoreFragment())
+            findNavController().navigate(
+                QuestionsFragmentDirections.actionQuestionsFragmentToScoreFragment(
+                    rightAnswers,
+                    args.category
+                )
+            )
         })
     }
 }
