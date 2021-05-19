@@ -59,9 +59,7 @@ class QuestionsFragment : Fragment() {
         viewModel.answerResultEvent.observe(viewLifecycleOwner, Observer { answer ->
             binding.answer = answer
             binding.motionLayoutQuestions.transitionToEnd()
-            binding.motionLayoutQuestions.visibility = View.GONE
             binding.motionLayoutQuestions.transitionToStart()
-            binding.motionLayoutQuestions.visibility = View.VISIBLE
         })
 
         viewModel.scoreFragmentEvent.observe(viewLifecycleOwner, Observer { rightAnswers ->
