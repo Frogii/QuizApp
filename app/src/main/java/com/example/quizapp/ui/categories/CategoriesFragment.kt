@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -13,6 +14,7 @@ import com.example.quizapp.R
 import com.example.quizapp.adapter.CategoriesRecAdapter
 import com.example.quizapp.databinding.FragmentCategoriesBinding
 import com.example.quizapp.repository.QuizRepository
+import com.example.quizapp.retrofit.model.QuizCategory
 
 class CategoriesFragment : Fragment() {
 
@@ -33,12 +35,19 @@ class CategoriesFragment : Fragment() {
         binding.viewModel = categoriesViewModel
 
         categoriesRecAdapter = CategoriesRecAdapter { category ->
-            findNavController().navigate(
-                CategoriesFragmentDirections.actionCategoriesFragmentToQuestionsFragment(category)
-            )
+            categoriesViewModel.setQuestionsEvent(category)
         }
         binding.recyclerViewCategories.adapter = categoriesRecAdapter
+        categoriesViewModel.moveToQuestionsFragment.observe(this, Observer { category ->
+            moveToQuestions(category)
+        })
 
         return binding.root
+    }
+
+    private fun moveToQuestions(category: QuizCategory) {
+        findNavController().navigate(
+            CategoriesFragmentDirections.actionCategoriesFragmentToQuestionsFragment(category)
+        )
     }
 }
