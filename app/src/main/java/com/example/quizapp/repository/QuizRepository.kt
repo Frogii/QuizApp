@@ -1,11 +1,9 @@
 package com.example.quizapp.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.quizapp.retrofit.RetrofitInstance
 import com.example.quizapp.retrofit.model.QuizCategory
-import com.example.quizapp.retrofit.model.QuizQuestion
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

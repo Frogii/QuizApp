@@ -23,8 +23,8 @@ fun bindRecyclerViewData(recyclerView: RecyclerView, data: List<QuizCategory>?) 
 @BindingAdapter("questionsList")
 fun bindQuestionRecycler(viewPager2: ViewPager2, data: List<QuizQuestion>?) {
     val adapter = viewPager2.adapter as QuestionsRecAdapter
-    data?.let {
-        adapter.setList(data)
+    data?.let { list ->
+        adapter.setList(list)
     }
 }
 
