@@ -62,11 +62,11 @@ class CategoriesFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         categoriesViewModel.changeDifficulty(
-        when (item.itemId) {
-            R.id.difficulty_medium -> QuizDifficulty.MEDIUM
-            R.id.difficulty_hard -> QuizDifficulty.HARD
-            else -> QuizDifficulty.EASY
-        }
+            when (item.itemId) {
+                R.id.difficulty_medium -> QuizDifficulty.MEDIUM
+                R.id.difficulty_hard -> QuizDifficulty.HARD
+                else -> QuizDifficulty.EASY
+            }
         )
         return super.onOptionsItemSelected(item)
     }
