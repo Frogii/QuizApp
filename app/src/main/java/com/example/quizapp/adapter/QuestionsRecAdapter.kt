@@ -5,6 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.databinding.QuestionItemBinding
 import com.example.quizapp.retrofit.model.QuizQuestion
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class QuestionsRecAdapter(val answerClick: (Boolean) -> Unit) :
     RecyclerView.Adapter<QuestionsRecAdapter.QuestionViewHolder>() {
