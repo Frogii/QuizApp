@@ -2,9 +2,7 @@ package com.example.quizapp.ui.categories
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,6 +15,7 @@ import com.example.quizapp.databinding.FragmentCategoriesBinding
 import com.example.quizapp.repository.QuizRepository
 import javax.inject.Inject
 import com.example.quizapp.retrofit.model.QuizCategory
+import com.example.quizapp.util.QuizDifficulty
 
 class CategoriesFragment : Fragment() {
 
@@ -24,12 +23,14 @@ class CategoriesFragment : Fragment() {
     private lateinit var categoriesRecAdapter: CategoriesRecAdapter
     private lateinit var categoriesViewModel: CategoriesViewModel
     private lateinit var categoriesViewModelFactory: CategoriesViewModelFactory
+
     @Inject
     lateinit var quizRepository: QuizRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App.dagerAppComponent.inject(this)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -52,6 +53,22 @@ class CategoriesFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.difficulty_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        categoriesViewModel.changeDifficulty(
+        when (item.itemId) {
+            R.id.difficulty_medium -> QuizDifficulty.MEDIUM
+            R.id.difficulty_hard -> QuizDifficulty.HARD
+            else -> QuizDifficulty.EASY
+        }
+        )
+        return super.onOptionsItemSelected(item)
     }
 
     private fun moveToQuestions(category: QuizCategory) {

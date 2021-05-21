@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.quizapp.repository.QuizRepository
 import com.example.quizapp.retrofit.model.QuizCategory
 import com.example.quizapp.util.ApiStatus
+import com.example.quizapp.util.QuizDifficulty
 import com.example.quizapp.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 
@@ -39,6 +40,10 @@ class CategoriesViewModel(private val quizRepository: QuizRepository) : ViewMode
                 }
             }
         }
+    }
+
+    fun changeDifficulty(quizDifficulty: QuizDifficulty) {
+        quizRepository.difficulty = quizDifficulty
     }
 
     fun setQuestionsEvent(category: QuizCategory) {

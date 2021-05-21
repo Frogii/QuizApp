@@ -49,8 +49,6 @@ class QuestionsFragment : Fragment() {
             viewModel.checkAnswer(answer)
         }
         binding.viewPagerQuestions.adapter = questionsRecAdapter
-        Log.d("MYLOG", quizRepository.toString())
-        Log.d("MYLOG", quizRepository.api.toString())
         return binding.root
     }
 

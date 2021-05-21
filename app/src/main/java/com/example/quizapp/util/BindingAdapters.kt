@@ -2,14 +2,17 @@ package com.example.quizapp.util
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.quizapp.R
 import com.example.quizapp.adapter.CategoriesRecAdapter
+import com.example.quizapp.adapter.HistoryRecAdapter
 import com.example.quizapp.adapter.QuestionsRecAdapter
 import com.example.quizapp.retrofit.model.QuizCategory
 import com.example.quizapp.retrofit.model.QuizQuestion
+import com.example.quizapp.room.model.QuizTry
 import com.google.android.material.snackbar.Snackbar
 
 @BindingAdapter("dataList")
