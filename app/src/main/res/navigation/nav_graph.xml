@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.example.quizapp.ui.HistoryFragment"
+        android:name="com.example.quizapp.ui.history.HistoryFragment"
         android:label="History" />
     <fragment
         android:id="@+id/questionsFragment"
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/scoreFragment"
-        android:name="com.example.quizapp.ui.ScoreFragment"
+        android:name="com.example.quizapp.ui.score.ScoreFragment"
         android:label="Score" >
         <action
             android:id="@+id/action_scoreFragment_to_questionsFragment"

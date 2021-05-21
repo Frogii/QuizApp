@@ -28,6 +28,14 @@ fun bindQuestionRecycler(viewPager2: ViewPager2, data: List<QuizQuestion>?) {
     }
 }
 
+@BindingAdapter("attemptsList")
+fun bindAttemptsRecycler(recyclerView: RecyclerView, data: List<QuizTry>?) {
+    val adapter = recyclerView.adapter as HistoryRecAdapter
+    data?.let { list ->
+        adapter.setList(list)
+    }
+}
+
 @BindingAdapter("apiStatus")
 fun bindApiStatus(imageView: ImageView, status: ApiStatus?) {
     when (status) {
@@ -47,6 +55,18 @@ fun bindApiStatus(imageView: ImageView, status: ApiStatus?) {
             imageView.visibility = View.VISIBLE
             imageView.setImageResource(R.drawable.ic_sad_face)
             Snackbar.make(imageView, "No questions for this category", Snackbar.LENGTH_SHORT).show()
+        }
+    }
+}
+
+@BindingAdapter("roomStatus")
+fun bindRoomStatus(textView: TextView, status: RoomStatus?) {
+    when (status) {
+        RoomStatus.DONE -> {
+            textView.visibility = View.GONE
+        }
+        RoomStatus.EMPTY -> {
+            textView.visibility = View.VISIBLE
         }
     }
 }
