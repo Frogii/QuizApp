@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.quizapp.repository.QuizRepository
 import com.example.quizapp.retrofit.model.QuizCategory
 import com.example.quizapp.util.ApiStatus
+import com.example.quizapp.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 
 class CategoriesViewModel(private val quizRepository: QuizRepository) : ViewModel() {
@@ -18,6 +19,8 @@ class CategoriesViewModel(private val quizRepository: QuizRepository) : ViewMode
 
     val categories: LiveData<List<QuizCategory>>
         get() = quizRepository.categories
+
+    val moveToQuestionsFragment = SingleLiveEvent<QuizCategory>()
 
     init {
         getCategories()
@@ -36,5 +39,9 @@ class CategoriesViewModel(private val quizRepository: QuizRepository) : ViewMode
                 }
             }
         }
+    }
+
+    fun setQuestionsEvent(category: QuizCategory) {
+        moveToQuestionsFragment.value = category
     }
 }
