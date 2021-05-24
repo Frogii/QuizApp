@@ -26,7 +26,9 @@ class QuizRepository(private val api: QuizApi, private val db: QuizDatabase) {
         }
     }
 
-    suspend fun getQuestions(categoryId: Int) = api.getQuestions(categoryId, difficulty.level)
+    suspend fun getQuestions(categoryId: Int) = withContext(Dispatchers.IO) {
+        api.getQuestions(categoryId, difficulty.level)
+    }
 
     //Database actions
     suspend fun insertAttempt(quizTry: QuizTry) = db.getQuizTryDao().insertAttempt(quizTry)

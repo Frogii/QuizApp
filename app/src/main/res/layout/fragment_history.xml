@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:text="@string/history_is_empty"
             android:visibility="gone"
+            android:theme="@style/TextTheme"
             android:layout_marginTop="100dp"
             android:layout_gravity="center_horizontal"
             app:roomStatus="@{historyViewModel.status}"

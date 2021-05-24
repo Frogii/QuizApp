@@ -1,7 +1,6 @@
 package com.example.quizapp.ui.score
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +28,7 @@ class ScoreFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         args = ScoreFragmentArgs.fromBundle(requireArguments())
-        App.dagerAppComponent.inject(this)
+        App.daggerAppComponent.inject(this)
     }
 
     override fun onCreateView(

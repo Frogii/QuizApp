@@ -1,7 +1,6 @@
 package com.example.quizapp.ui.categories
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -29,7 +28,7 @@ class CategoriesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        App.dagerAppComponent.inject(this)
+        App.daggerAppComponent.inject(this)
         setHasOptionsMenu(true)
     }
 
@@ -65,7 +64,8 @@ class CategoriesFragment : Fragment() {
             when (item.itemId) {
                 R.id.difficulty_medium -> QuizDifficulty.MEDIUM
                 R.id.difficulty_hard -> QuizDifficulty.HARD
-                else -> QuizDifficulty.EASY
+                R.id.difficulty_easy -> QuizDifficulty.EASY
+                else -> return true
             }
         )
         return super.onOptionsItemSelected(item)

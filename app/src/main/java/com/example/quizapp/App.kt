@@ -7,12 +7,12 @@ import com.example.quizapp.di.module.ContextModule
 class App : Application() {
 
     companion object {
-        lateinit var dagerAppComponent: DaggerAppComponent
+        lateinit var daggerAppComponent: DaggerAppComponent
     }
 
     override fun onCreate() {
         super.onCreate()
-        dagerAppComponent =
+        daggerAppComponent =
             DaggerAppComponent.builder()
                 .contextModule(ContextModule(applicationContext))
                 .build() as DaggerAppComponent

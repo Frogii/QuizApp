@@ -19,7 +19,7 @@ abstract class QuizDatabase : RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 QuizDatabase::class.java,
-                "QuizAttempts.db"
+                "QuizAttempts_db"
             )
                 .build()
     }

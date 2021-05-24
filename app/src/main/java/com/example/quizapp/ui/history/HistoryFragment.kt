@@ -1,22 +1,17 @@
 package com.example.quizapp.ui.history
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.App
 import com.example.quizapp.R
 import com.example.quizapp.adapter.HistoryRecAdapter
 import com.example.quizapp.databinding.FragmentHistoryBinding
 import com.example.quizapp.repository.QuizRepository
-import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
 class HistoryFragment : Fragment() {
@@ -30,7 +25,7 @@ class HistoryFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        App.dagerAppComponent.inject(this)
+        App.daggerAppComponent.inject(this)
     }
 
     override fun onCreateView(

@@ -21,9 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_margin="8dp"
-            android:background="?android:attr/selectableItemBackground"
+            android:theme="@style/CardTheme"
             app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
+            app:cardElevation="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -33,11 +33,11 @@
                     android:id="@+id/textViewCategoryItem"
                     android:layout_width="144dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/archivo_black"
                     android:text="@{category.shortName}"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
                     android:textSize="18sp"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:theme="@style/TextTheme"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

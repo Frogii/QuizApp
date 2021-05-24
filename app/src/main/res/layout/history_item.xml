@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="quizTry"
             type="com.example.quizapp.room.model.QuizTry" />
@@ -13,8 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:theme="@style/CardTheme"
         app:cardCornerRadius="10dp"
-        app:cardElevation="20dp">
+        app:cardElevation="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,10 +29,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="32dp"
-                android:fontFamily="@font/archivo_black"
+                android:fontFamily="@font/ubuntu_medium"
                 android:text="@{quizTry.category}"
-                android:textColor="@color/black"
                 android:textSize="18sp"
+                android:theme="@style/TextTheme"
                 app:layout_constraintEnd_toStartOf="@+id/textViewHistoryMark"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -42,8 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="@{quizTry.date}"
-                android:textColor="@color/black"
                 android:textSize="16sp"
+                android:theme="@style/TextTheme"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewHistoryCategory"
                 tools:text="28.01.23" />
@@ -54,8 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="@{@string/score_num(quizTry.rightAnswers)}"
-                android:textColor="@color/black"
                 android:textSize="20sp"
+                android:theme="@style/TextTheme"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

@@ -1,7 +1,6 @@
 package com.example.quizapp.ui.questions
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +29,7 @@ class QuestionsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        App.dagerAppComponent.inject(this)
+        App.daggerAppComponent.inject(this)
         args = QuestionsFragmentArgs.fromBundle(requireArguments())
         (activity as QuizActivity).supportActionBar?.title = args.category.shortName
     }
