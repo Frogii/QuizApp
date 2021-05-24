@@ -63,8 +63,8 @@ class QuestionsFragment : Fragment() {
 
         viewModel.answerResultEvent.observe(viewLifecycleOwner, Observer { answer ->
             binding.answer = answer
+            binding.motionLayoutQuestions.progress = 0f
             binding.motionLayoutQuestions.transitionToEnd()
-            binding.motionLayoutQuestions.transitionToStart()
         })
 
         viewModel.scoreFragmentEvent.observe(viewLifecycleOwner, Observer { rightAnswers ->
