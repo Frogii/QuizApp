@@ -32,6 +32,7 @@ class QuestionsRecAdapter(val answerClick: (Boolean) -> Unit) :
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
         holder.bind(questionsList[position])
+        holder.binding.motionLayoutQuestionItem.transitionToStart()
     }
 
     override fun getItemCount(): Int {
@@ -45,9 +46,13 @@ class QuestionsRecAdapter(val answerClick: (Boolean) -> Unit) :
             binding.question = quizQuestion
             binding.buttonTrue.setOnClickListener {
                 answerClick(true)
+                binding.motionLayoutQuestionItem.transitionToEnd()
+                binding.invalidateAll()
             }
             binding.buttonFalse.setOnClickListener {
                 answerClick(false)
+                binding.motionLayoutQuestionItem.transitionToEnd()
+                binding.invalidateAll()
             }
         }
     }

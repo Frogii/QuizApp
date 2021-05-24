@@ -44,19 +44,20 @@ class QuestionsFragment : Fragment() {
             ViewModelProvider(this, questionsViewModelFactory).get(QuestionsViewModel::class.java)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        questionsRecAdapter = QuestionsRecAdapter { answer ->
-            viewModel.checkAnswer(answer)
-        }
-        binding.viewPagerQuestions.adapter = questionsRecAdapter
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        questionsRecAdapter = QuestionsRecAdapter { answer ->
+            viewModel.checkAnswer(answer)
+        }
         binding.viewPagerQuestions.apply {
+            adapter = questionsRecAdapter
+            offscreenPageLimit = 10
             isUserInputEnabled = false
             viewModel.position.observe(viewLifecycleOwner, Observer { position ->
-                this.currentItem = position
+                this.setCurrentItem(position, true)
             })
         }
 
