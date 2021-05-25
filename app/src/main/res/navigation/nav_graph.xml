@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/categoriesFragment">
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.example.quizapp.ui.categories.CategoriesFragment"
+        android:label="Categories" >
+        <action
+            android:id="@+id/action_categoriesFragment_to_questionsFragment"
+            app:destination="@id/questionsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.quizapp.ui.history.HistoryFragment"
+        android:label="History" />
+    <fragment
+        android:id="@+id/questionsFragment"
+        android:name="com.example.quizapp.ui.questions.QuestionsFragment"
+        android:label="" >
+        <action
+            android:id="@+id/action_questionsFragment_to_scoreFragment"
+            app:destination="@id/scoreFragment"
+            app:popUpTo="@id/categoriesFragment"
+            app:popUpToInclusive="false" />
+        <argument
+            android:name="category"
+            app:argType="com.example.quizapp.retrofit.model.QuizCategory" />
+    </fragment>
+    <fragment
+        android:id="@+id/scoreFragment"
+        android:name="com.example.quizapp.ui.score.ScoreFragment"
+        android:label="Score" >
+        <action
+            android:id="@+id/action_scoreFragment_to_questionsFragment"
+            app:destination="@id/questionsFragment"
+            app:popUpTo="@id/categoriesFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_scoreFragment_to_categoriesFragment"
+            app:destination="@id/categoriesFragment"
+            app:popUpTo="@id/categoriesFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="rightAnswers"
+            app:argType="integer" />
+        <argument
+            android:name="category"
+            app:argType="com.example.quizapp.retrofit.model.QuizCategory" />
+        <argument
+            android:name="questionsDifficulty"
+            app:argType="string" />
+    </fragment>
+</navigation>

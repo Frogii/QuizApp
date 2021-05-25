@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="historyViewModel"
+            type="com.example.quizapp.ui.history.HistoryViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.history.HistoryFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewHistory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            app:attemptsList="@{historyViewModel.history}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/history_item" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/history_is_empty"
+            android:visibility="gone"
+            android:theme="@style/TextTheme"
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center_horizontal"
+            app:roomStatus="@{historyViewModel.status}"
+            tools:visibility="visible"
+            />
+
+    </FrameLayout>
+</layout>
