@@ -71,7 +71,8 @@ class QuestionsFragment : Fragment() {
             findNavController().navigate(
                 QuestionsFragmentDirections.actionQuestionsFragmentToScoreFragment(
                     rightAnswers,
-                    args.category
+                    args.category,
+                    viewModel.difficulty
                 )
             )
         })

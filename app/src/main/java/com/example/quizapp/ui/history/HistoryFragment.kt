@@ -19,7 +19,6 @@ class HistoryFragment : Fragment() {
     private lateinit var binding: FragmentHistoryBinding
     private lateinit var historyViewModel: HistoryViewModel
     private lateinit var historyRecAdapter: HistoryRecAdapter
-
     @Inject
     lateinit var quizRepository: QuizRepository
 

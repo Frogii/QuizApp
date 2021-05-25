@@ -22,7 +22,6 @@ class CategoriesFragment : Fragment() {
     private lateinit var categoriesRecAdapter: CategoriesRecAdapter
     private lateinit var categoriesViewModel: CategoriesViewModel
     private lateinit var categoriesViewModelFactory: CategoriesViewModelFactory
-
     @Inject
     lateinit var quizRepository: QuizRepository
 

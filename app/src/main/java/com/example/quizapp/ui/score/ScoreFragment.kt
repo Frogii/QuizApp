@@ -21,7 +21,6 @@ class ScoreFragment : Fragment() {
     private lateinit var binding: FragmentScoreBinding
     private lateinit var args: ScoreFragmentArgs
     private lateinit var scoreViewModel: ScoreViewModel
-
     @Inject
     lateinit var quizRepository: QuizRepository
 
@@ -41,7 +40,11 @@ class ScoreFragment : Fragment() {
             this,
             ScoreViewModelFactory(quizRepository)
         ).get(ScoreViewModel::class.java)
-        scoreViewModel.addAttempt(QuizTry(args.category.shortName, args.rightAnswers, AppDateUtils.getCurrentDay()))
+        scoreViewModel.addAttempt(QuizTry(
+            args.category.shortName,
+            args.rightAnswers,
+            AppDateUtils.getCurrentDay(),
+            args.questionsDifficulty))
         binding.buttonTryAgain.setOnClickListener {
             findNavController().navigate(
                 ScoreFragmentDirections.actionScoreFragmentToQuestionsFragment(

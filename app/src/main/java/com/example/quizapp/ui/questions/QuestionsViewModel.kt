@@ -40,6 +40,8 @@ class QuestionsViewModel(private val quizRepository: QuizRepository, category: Q
 
     val scoreFragmentEvent = SingleLiveEvent<Int>()
 
+    val difficulty = quizRepository.difficulty.level
+
     init {
         _category.value = category
         getQuestions()

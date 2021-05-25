@@ -11,5 +11,4 @@ class ContextModule(private val context: Context) {
     @AppScope
     @Provides
     fun provideContext(): Context = this.context.applicationContext
-
 }

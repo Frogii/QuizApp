@@ -50,5 +50,8 @@
         <argument
             android:name="category"
             app:argType="com.example.quizapp.retrofit.model.QuizCategory" />
+        <argument
+            android:name="questionsDifficulty"
+            app:argType="string" />
     </fragment>
 </navigation>
