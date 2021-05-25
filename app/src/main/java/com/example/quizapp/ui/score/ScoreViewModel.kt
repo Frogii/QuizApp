@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.quizapp.repository.QuizRepository
 import com.example.quizapp.room.model.QuizTry
+import com.example.quizapp.util.QuizDifficulty
 import kotlinx.coroutines.launch
 
 class ScoreViewModel(val quizRepository: QuizRepository) : ViewModel() {
@@ -14,7 +15,8 @@ class ScoreViewModel(val quizRepository: QuizRepository) : ViewModel() {
         }
     }
 
-    fun addAttempt(quizTry: QuizTry) {
+    fun addAttempt(category: String, rightAnswers: Int, date: String, difficulty: String) {
+        val quizTry = QuizTry(category, rightAnswers, date, difficulty)
         insertAttempt(quizTry)
     }
 

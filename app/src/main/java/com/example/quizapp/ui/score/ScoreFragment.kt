@@ -40,11 +40,11 @@ class ScoreFragment : Fragment() {
             this,
             ScoreViewModelFactory(quizRepository)
         ).get(ScoreViewModel::class.java)
-        scoreViewModel.addAttempt(QuizTry(
+        scoreViewModel.addAttempt(
             args.category.shortName,
             args.rightAnswers,
             AppDateUtils.getCurrentDay(),
-            args.questionsDifficulty))
+            args.questionsDifficulty)
         binding.buttonTryAgain.setOnClickListener {
             findNavController().navigate(
                 ScoreFragmentDirections.actionScoreFragmentToQuestionsFragment(
