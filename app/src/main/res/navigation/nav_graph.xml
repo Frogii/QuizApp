@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
     app:startDestination="@id/categoriesFragment">
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.example.quizapp.ui.categories.CategoriesFragment"
-        android:label="Categories" >
+        android:label="Categories"
+        tools:layout="@layout/fragment_categories">
         <action
             android:id="@+id/action_categoriesFragment_to_questionsFragment"
             app:destination="@id/questionsFragment"
@@ -16,11 +18,13 @@
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.quizapp.ui.history.HistoryFragment"
-        android:label="History" />
+        android:label="History"
+        tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/questionsFragment"
         android:name="com.example.quizapp.ui.questions.QuestionsFragment"
-        android:label="" >
+        android:label=""
+        tools:layout="@layout/fragment_questions">
         <action
             android:id="@+id/action_questionsFragment_to_scoreFragment"
             app:destination="@id/scoreFragment"
@@ -33,7 +37,8 @@
     <fragment
         android:id="@+id/scoreFragment"
         android:name="com.example.quizapp.ui.score.ScoreFragment"
-        android:label="Score" >
+        android:label="Score"
+        tools:layout="@layout/fragment_score">
         <action
             android:id="@+id/action_scoreFragment_to_questionsFragment"
             app:destination="@id/questionsFragment"
