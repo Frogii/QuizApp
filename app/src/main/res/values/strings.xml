@@ -12,4 +12,5 @@
     <string name="true_answer">True</string>
     <string name="wrong_answer">Wrong</string>
     <string name="history_is_empty">History is empty</string>
+    <string name="seconds">sec</string>
 </resources>
