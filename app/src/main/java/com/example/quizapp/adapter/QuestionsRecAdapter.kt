@@ -1,13 +1,12 @@
 package com.example.quizapp.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.databinding.QuestionItemBinding
 import com.example.quizapp.retrofit.model.QuizQuestion
 
-class QuestionsRecAdapter(val answerClick: (Boolean) -> Unit, val startTimer: (Boolean) -> Unit) :
+class QuestionsRecAdapter(val answerClick: (Boolean) -> Unit) :
     RecyclerView.Adapter<QuestionsRecAdapter.QuestionViewHolder>() {
 
     private var questionsList = listOf<QuizQuestion>()
@@ -27,12 +26,9 @@ class QuestionsRecAdapter(val answerClick: (Boolean) -> Unit, val startTimer: (B
         )
     }
 
-
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
         holder.bind(questionsList[position])
         holder.binding.motionLayoutQuestionItem.transitionToStart()
-//        Log.d("myLog", "startTimer")
-        startTimer(true)
     }
 
     override fun getItemCount(): Int {
@@ -46,15 +42,11 @@ class QuestionsRecAdapter(val answerClick: (Boolean) -> Unit, val startTimer: (B
             binding.question = quizQuestion
             binding.buttonTrue.setOnClickListener {
                 answerClick(true)
-                startTimer(false)
                 binding.motionLayoutQuestionItem.transitionToEnd()
-//                binding.invalidateAll()
             }
             binding.buttonFalse.setOnClickListener {
                 answerClick(false)
-                startTimer(false)
                 binding.motionLayoutQuestionItem.transitionToEnd()
-//                binding.invalidateAll()
             }
         }
     }

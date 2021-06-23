@@ -1,15 +1,12 @@
 package com.example.quizapp.ui.questions
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.quizapp.App
 import com.example.quizapp.R
@@ -18,7 +15,6 @@ import com.example.quizapp.databinding.FragmentQuestionsBinding
 import com.example.quizapp.repository.QuizRepository
 import com.example.quizapp.ui.QuizActivity
 import com.example.quizapp.util.TimerStatus
-import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class QuestionsFragment : Fragment() {
@@ -42,7 +38,7 @@ class QuestionsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_questions, container, false)
         questionsViewModelFactory = QuestionsViewModelFactory(quizRepository, args.category)
         viewModel =
@@ -54,51 +50,26 @@ class QuestionsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var progressJob: Job? = null
-        var timeJob: Job? = null
-        questionsRecAdapter = QuestionsRecAdapter(
-            { answer ->
+        questionsRecAdapter = QuestionsRecAdapter{ answer ->
                 viewModel.checkAnswer(answer)
-            },
-            { startTimer ->
-//                if (!startTimer) {
-//                    progressJob?.cancel()
-//                    timeJob?.cancel()
-//                    binding.textViewQuestionsTime.text = "15 sec"
-//                    binding.progressBarQuestions.progress = 0
-//                    Log.d("myLog", "JobCancel")
-//                }
             }
-        )
+
         binding.viewPagerQuestions.apply {
             adapter = questionsRecAdapter
             offscreenPageLimit = 10
             isUserInputEnabled = false
-            viewModel.position.observe(viewLifecycleOwner, Observer { position ->
+            viewModel.position.observe(viewLifecycleOwner, { position ->
                 this.setCurrentItem(position, true)
-//                progressJob = CoroutineScope(Dispatchers.Main).launch {
-//                    for (i in 0..150) {
-//                        delay(100)
-//                        binding.progressBarQuestions.setProgress(i, true)
-//                    }
-//                    binding.progressBarQuestions.progress = 0
-//                }
-//                timeJob = CoroutineScope(Dispatchers.Main).launch {
-//                    for (i in 14 downTo 0) {
-//                        delay(1000)
-//                        binding.textViewQuestionsTime.text = "$i sec"
-//                    }
-//                }
             })
         }
 
-        viewModel.answerResultEvent.observe(viewLifecycleOwner, Observer { answer ->
+        viewModel.answerResultEvent.observe(viewLifecycleOwner, { answer ->
             binding.answer = answer
             binding.motionLayoutQuestions.progress = 0f
             binding.motionLayoutQuestions.transitionToEnd()
         })
 
-        viewModel.scoreFragmentEvent.observe(viewLifecycleOwner, Observer { rightAnswers ->
+        viewModel.scoreFragmentEvent.observe(viewLifecycleOwner, { rightAnswers ->
             findNavController().navigate(
                 QuestionsFragmentDirections.actionQuestionsFragmentToScoreFragment(
                     rightAnswers,
@@ -116,6 +87,9 @@ class QuestionsFragment : Fragment() {
                 TimerStatus.STOP -> {
                     viewModel.stopTimer()
                 }
+                TimerStatus.TIMEOUT -> {
+                    viewModel.timeout()
+                }
                 else -> {
                     viewModel.stopTimer()
                 }
@@ -126,7 +100,7 @@ class QuestionsFragment : Fragment() {
             binding.progressBarQuestions.setProgress(progress, true)
         })
         viewModel.seconds.observe(viewLifecycleOwner, { seconds ->
-            binding.textViewQuestionsSeconds.text = seconds
+            binding.textViewQuestionsSeconds.text = seconds.toString()
         })
     }
 
