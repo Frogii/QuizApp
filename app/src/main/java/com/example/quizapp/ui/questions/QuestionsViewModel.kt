@@ -17,13 +17,9 @@ import kotlinx.coroutines.*
 class QuestionsViewModel(private val quizRepository: QuizRepository, category: QuizCategory) :
     ViewModel() {
 
-    private var timerProgress: CountDownTimer? = null
-    private var timerSeconds: CountDownTimer? = null
-    private var timerJob: Job? = null
-
-    private val _status = MutableLiveData<ApiStatus>()
-    val status: LiveData<ApiStatus>
-        get() = _status
+    private val _downloadStatus = MutableLiveData<ApiStatus>()
+    val downloadStatus: LiveData<ApiStatus>
+        get() = _downloadStatus
 
     private val _category = MutableLiveData<QuizCategory>()
     val category: LiveData<QuizCategory>
@@ -42,15 +38,18 @@ class QuestionsViewModel(private val quizRepository: QuizRepository, category: Q
         get() = _position
 
     val answerResultEvent = SingleLiveEvent<Boolean>()
-
     val scoreFragmentEvent = SingleLiveEvent<Int>()
-
     val difficulty = quizRepository.difficulty.level
 
+
     val timerEvent = SingleLiveEvent<TimerStatus>()
+    private var timerProgress: CountDownTimer? = null
+    private var timerSeconds: CountDownTimer? = null
+    private var timerJob: Job? = null
 
     private val _progress = MutableLiveData(0)
     val progress: LiveData<Int> get() = _progress
+
     private val _seconds = MutableLiveData(15)
     val seconds: LiveData<Int> get() = _seconds
 
@@ -61,22 +60,22 @@ class QuestionsViewModel(private val quizRepository: QuizRepository, category: Q
 
     private fun getQuestions() {
         viewModelScope.launch {
-            _status.value = ApiStatus.LOADING
+            _downloadStatus.value = ApiStatus.LOADING
             try {
                 category.value?.id?.let { id ->
                     val response = quizRepository.getQuestions(id)
                     if (response.isSuccessful) {
                         _questions.value = response.body()?.results
                         if (response.body()?.results?.isEmpty() == true) {
-                            _status.value = ApiStatus.EMPTY
+                            _downloadStatus.value = ApiStatus.EMPTY
                         } else {
-                            _status.value = ApiStatus.DONE
+                            _downloadStatus.value = ApiStatus.DONE
                             setTimerEvent(TimerStatus.START)
                         }
                     }
                 }
             } catch (e: Exception) {
-                _status.value = ApiStatus.ERROR
+                _downloadStatus.value = ApiStatus.ERROR
                 Log.d("myLog", e.message.toString())
             }
         }
